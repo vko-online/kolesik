@@ -2,7 +2,7 @@
 
 > Pristine Kolesa app
 
-Fork of sindresorhus/[Anatine](https://github.com/sindresorhus/anatine)
+Fork of [sindresorhus/Anatine](https://github.com/sindresorhus/anatine)
 
 <br>
 <div align="center">

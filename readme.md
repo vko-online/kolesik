@@ -2,6 +2,8 @@
 
 > Pristine Kolesa app
 
+Fork of sindresorhus/[Anatine](https://github.com/sindresorhus/anatine)
+
 <br>
 <div align="center">
 	<a href="https://github.com/vko-online/kolesik/releases/latest" align="center">
@@ -55,7 +57,7 @@ Built with [Electron](http://electron.atom.io).
 
 ## Related
 
-- [Anatine](https://github.com/sindresorhus/anatine) - Facebook Messenger app
+- [Anatine](https://github.com/sindresorhus/anatine) - Prestine Twitter app
 
 
 ## License

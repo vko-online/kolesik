@@ -38,8 +38,8 @@ function createMainWindow() {
 		width: lastWindowState.width,
 		height: lastWindowState.height,
 		icon: process.platform === 'linux' && path.join(__dirname, 'media', 'Icon.png'),
-		minWidth: 340,
-		minHeight: 260,
+		minWidth: 320,
+		minHeight: 510,
 		titleBarStyle: 'hidden-inset',
 		webPreferences: {
 			preload: path.join(__dirname, 'browser.js'),
@@ -53,7 +53,7 @@ function createMainWindow() {
 		win.setSheetOffset(40);
 	}
 
-	win.loadURL('https://mobile.twitter.com/home');
+	win.loadURL('https://m.kolesa.kz');
 
 	win.on('close', e => {
 		if (!isQuitting) {
@@ -67,6 +67,7 @@ function createMainWindow() {
 		}
 	});
 
+	win.openDevTools();
 	return win;
 }
 

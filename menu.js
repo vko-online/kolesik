@@ -44,7 +44,7 @@ const helpSubmenu = [
 	{
 		label: `${appName} Website...`,
 		click() {
-			shell.openExternal('https://github.com/sindresorhus/anatine');
+			shell.openExternal('https://github.com/vko-online/kolesik');
 		}
 	},
 	{
@@ -59,7 +59,7 @@ ${app.getName()} ${app.getVersion()}
 Electron ${process.versions.electron}
 ${process.platform} ${process.arch} ${os.release()}`;
 
-			shell.openExternal(`https://github.com/sindresorhus/anatine/issues/new?body=${encodeURIComponent(body)}`);
+			shell.openExternal(`https://github.com/vko-online/kolesik/issues/new?body=${encodeURIComponent(body)}`);
 		}
 	}
 ];
@@ -71,15 +71,6 @@ const darwinTpl = [
 			{
 				label: `About ${appName}`,
 				role: 'about'
-			},
-			{
-				type: 'separator'
-			},
-			{
-				label: 'Log Out',
-				click() {
-					sendAction('log-out');
-				}
 			},
 			{
 				type: 'separator'
@@ -122,9 +113,9 @@ const darwinTpl = [
 		label: 'File',
 		submenu: [
 			{
-				label: 'New Tweet',
+				label: 'Search',
 				click() {
-					sendAction('new-tweet');
+					sendAction('search');
 				}
 			}
 		]
@@ -189,23 +180,6 @@ const darwinTpl = [
 				type: 'separator'
 			},
 			{
-				label: 'Next Tab',
-				accelerator: 'Ctrl+Tab',
-				click() {
-					sendAction('next-tab');
-				}
-			},
-			{
-				label: 'Previous Tab',
-				accelerator: 'Ctrl+Shift+Tab',
-				click() {
-					sendAction('previous-tab');
-				}
-			},
-			{
-				type: 'separator'
-			},
-			{
 				label: 'Bring All to Front',
 				role: 'front'
 			},
@@ -233,36 +207,13 @@ const linuxTpl = [
 		label: 'File',
 		submenu: [
 			{
-				label: 'New Tweet',
+				label: 'Search',
 				click() {
-					sendAction('new-tweet');
+					sendAction('search');
 				}
 			},
 			{
 				type: 'separator'
-			},
-			{
-				label: 'Next Tab',
-				accelerator: 'Ctrl+Tab',
-				click() {
-					sendAction('next-tab');
-				}
-			},
-			{
-				label: 'Previous Tab',
-				accelerator: 'Ctrl+Shift+Tab',
-				click() {
-					sendAction('previous-tab');
-				}
-			},
-			{
-				type: 'separator'
-			},
-			{
-				label: 'Log Out',
-				click() {
-					sendAction('log-out');
-				}
 			},
 			{
 				label: 'Quit',

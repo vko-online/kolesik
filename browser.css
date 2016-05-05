@@ -1,49 +1,28 @@
-/* navbar */
-/* TODO: use wider values on non-OSX as they don't have the inline traffic lights */
-#react-root header .WBlUyLoP {
-	max-width: 60% !important;
-	width: 60% !important;
+.vip-place{
+	display: none!important;
 }
-
-/* main */
-#react-root main .WBlUyLoP {
-	max-width: 90% !important;
-	width: 90% !important;
+header{
+	box-shadow: 0 2px 5px rgba(0,0,0,.4);
+	padding:8px 0 10px 62px!important;
+	position: fixed!important;
+	top: 0!important;
+	left: 0!important;
+	right: 0!important;
+	z-index: 99!important;
 }
-
-/* push the compose modal down */
-/* TODO: only needed on OS X */
-#react-root .SaRmWN__._3tixQkQf {
-	top: 40px !important;
+footer{
+	display: none!important;
 }
-
-/* push the login navbar down */
-.ResponsiveLayout {
-	padding-top: 40px !important;
+.modal .page-controls{
+	/*padding-left: 62px!important;*/
 }
-
-/* bird overlaps with the login navbar */
-img.larrybird {
-	padding-left: 80px !important;
+.item-name{
+	cursor: pointer!important;
 }
-
-/* make nav bar more narrow */
-#react-root ._2XOZ62oy {
-	height: 2.6rem !important;
-}
-
-/* remove bottom border from active navbar tab */
-#react-root ._1Qfdd7IP {
-	box-shadow: none !important;
-}
-
-/* smaller navbar icons */
-#react-root ._3zdG1IkJ {
-	height: 1.7rem !important;
-}
-
-/* push the modal close button for DM's to the right so it's not covered by the OS X traffic lights */
-/* TODO: only needed on OS X */
-#react-root main button[aria-label="Close"] {
-	margin-left: 50px !important;
+.page-controls{
+	position: fixed!important;
+	top: 35px!important;
+	left: 0!important;
+	right: 0!important;
+	z-index: 99!important;
 }

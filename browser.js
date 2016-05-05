@@ -27,110 +27,18 @@ const storage = remote.require('./storage');
 const $ = document.querySelector.bind(document);
 // const $$ = document.querySelectorAll.bind(document);
 
-function changeTab(next) {
-	const pages = [
-		'/home',
-		'/notifications',
-		'/messages',
-		'/search'
-	];
-
-	// TODO: these lines can probably be simplified, but I can't think right now
-	const index = pages.indexOf(window.location.pathname) + (next ? 1 : -1);
-	const ret = (index % pages.length + pages.length) % pages.length;
-
-	$(`a[href$="${pages[ret]}"]`).click();
-}
-
-ipc.on('next-tab', () => {
-	changeTab(true);
-});
-
-ipc.on('previous-tab', () => {
-	changeTab(false);
-});
 
 function registerShortcuts(username) {
-	Mousetrap.bind('n', () => {
-		if (window.location.pathname.split('/')[1] === 'messages') {
-			$('a[href$="/messages/compose"]').click();
-		} else {
-			$('a[href$="/compose/tweet"]').click();
-		}
-
-		return false;
-	});
-
-	Mousetrap.bind('g h', () => {
-		$('a[href$="/home"]').click();
-	});
-
-	Mousetrap.bind('g n', () => {
-		$('a[href$="/notifications"]').click();
-	});
-
-	Mousetrap.bind('g m', () => {
-		$('a[href$="/messages"]').click();
-	});
-
-	Mousetrap.bind('/', () => {
-		$('a[href$="/search"]').click();
-
-		return false;
-	});
-
-	Mousetrap.bind('g p', () => {
-		$('a[href$="/account"]').click();
-		$(`a[href$="/${username}"]`).click();
-	});
-
-	Mousetrap.bind('g l', () => {
-		$('a[href$="/account"]').click();
-		$(`a[href$="/${username}"]`).click();
-		$(`a[href$="/${username}/likes"]`).click();
-	});
-
-	Mousetrap.bindGlobal('esc', () => {
-		const closeBtn = $('button[aria-label="Close"]');
-
-		if (closeBtn) {
-			closeBtn.click();
-		}
-	});
-
-	Mousetrap.bindGlobal('command+enter', () => {
-		if (window.location.pathname === '/compose/tweet') {
-			$('button._1LQ_VFHl._2cmVIBgK').click();
-		}
-
-		if (window.location.pathname.split('/')[1] === 'messages') {
-			$('button[data-testid="dmComposerSendButton"]').click();
-		}
-	});
-
 	Mousetrap.bind('backspace', () => {
 		window.history.back();
 	});
 }
 
-function init() {
-	// hide navbar profile link
-	$('header a[href$="/account"]').parentNode.style.display = 'none';
+ipc.on('search', () => {
+	$('a.modal-link').click();
 
-	const state = JSON.parse($('.___iso-state___').dataset.state).initialState;
-	const username = state.settings.data.screen_name;
-
-	registerShortcuts(username);
-}
-
-ipc.on('new-tweet', () => {
-	$('a[href$="/compose/tweet"]').click();
+	return false;
 });
-
-ipc.on('log-out', () => {
-	window.location.href = '/logout';
-});
-
 ipc.on('zoom-reset', () => {
 	setZoom(1.0);
 });
@@ -157,31 +65,14 @@ function setZoom(zoomFactor) {
 	storage.set('zoomFactor', zoomFactor);
 }
 
-// Inject a global style node to maintain zoom factor after conversation change.
-// Also set the zoom factor if it was set before quitting.
 function zoomInit() {
 	const zoomFactor = storage.get('zoomFactor') || 1.0;
 	const style = document.createElement('style');
 	style.id = 'zoomFactor';
-
 	document.body.appendChild(style);
 	setZoom(zoomFactor);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-	// TODO: Figure out how to loud external scripts here
-	// [
-	// 	path.resolve('vendor/mousetrap.js'),
-	// 	path.resolve('vendor/mousetrap-global-bind.js')
-	// ].forEach(src => {
-	// 	const script = document.createElement('script');
-	// 	script.src = `file://${src}`;
-	// 	script.async = false;
-	// 	document.head.appendChild(script);
-	// });
-
 	zoomInit();
-
-	// TODO: figure out a better way to detect when React is done
-	setTimeout(init, 300);
 });
